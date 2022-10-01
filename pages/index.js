@@ -11,44 +11,75 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Complaints and Compliments Register
         </h1>
+        <div className="w-full ">
+          <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Name">
+                Name
+              </label>
+              <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="name" type="text" placeholder="Name"/>
+            </div>
+            <div className="mb-6">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                Choose Feedback Category &nbsp; <span className='text-red-600'>*</span>
+              </label>
+              <select
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                  name="category">
+                <option>Complaints</option>
+                <option>Compliment</option>
+              </select>
+            </div>
+            <div className="mb-6">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                Choose School &nbsp; <span className='text-red-600'>*</span>
+              </label>
+              <select
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                  name='school'
+              >
+                <option value="1">Agriculture & Natural Resources</option>
+                <option value="2">Arts & Social Sciences</option>
+                <option value="3">Information Sciences	</option>
+                <option value="4">Medicine</option>
+                <option value="5">Nursing & Midewifery	</option>
+                <option value="6">Public Health	</option>
+                <option value="7">Tourism, Hospitality & Events Management	</option>
+                <option value="8">Law</option>
+                <option value="9">Biomedical Informatics	</option>
+                <option value="10">Engineering	</option>
+                <option value="11">Business & Economics	</option>
+                <option value="12">Dentistry	</option>
+                <option value="13">Education</option>
+              </select>
+            </div>
+            <div className="mb-6">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                Feedback Message  &nbsp; <span className='text-red-600'>*</span>
+              </label>
+              <textarea
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                  name="message"
+              >
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+              </textarea>
+            </div>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+            <div className="flex items-center justify-between">
+              <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="button">
+                Submit
+              </button>
+            </div>
+          </form>
         </div>
       </main>
 
