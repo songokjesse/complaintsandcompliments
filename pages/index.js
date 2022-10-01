@@ -3,6 +3,45 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+  const handleSubmit = async (event) => {
+    // Stop the form from submitting and refreshing the page.
+    event.preventDefault()
+
+    // Get data from the form.
+    const data = {
+      message: event.target.message.value,
+      category: event.target.category.value,
+      school: event.target.school.value,
+      name: event.target.name.value,
+      email: event.target.email.value,
+    }
+
+    // Send the data to the server in JSON format.
+    const JSONdata = JSON.stringify(data)
+
+    // API endpoint where we send form data.
+    const endpoint = '/api/form'
+
+    // Form the request for sending data to the server.
+    const options = {
+      // The method is POST because we are sending data.
+      method: 'POST',
+      // Tell the server we're sending JSON.
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // Body of the request is the JSON data we created above.
+      body: JSONdata,
+    }
+
+    // Send the form data to our forms API on Vercel and get a response.
+    const response = await fetch(endpoint, options)
+
+    // Get the response data from server as JSON.
+    // If server returns the name submitted, that means the form works.
+    const result = await response.json()
+    alert(`Feedback Successfully submitted: ${result.data}`)
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -17,7 +56,7 @@ export default function Home() {
           Complaints and Compliments Register
         </h1>
         <div className="w-full ">
-          <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"  method="post">
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Name">
                 Name
@@ -26,13 +65,22 @@ export default function Home() {
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="name" type="text" placeholder="Name"/>
             </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Name">
+               Email
+              </label>
+              <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  name="phone" type="email" placeholder="Email"/>
+            </div>
             <div className="mb-6">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
                 Choose Feedback Category &nbsp; <span className='text-red-600'>*</span>
               </label>
               <select
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                  name="category">
+                  name="category" required>
+                <option></option>
                 <option>Complaints</option>
                 <option>Compliment</option>
               </select>
@@ -44,20 +92,22 @@ export default function Home() {
               <select
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                   name='school'
+                  required
               >
-                <option value="1">Agriculture & Natural Resources</option>
-                <option value="2">Arts & Social Sciences</option>
-                <option value="3">Information Sciences	</option>
-                <option value="4">Medicine</option>
-                <option value="5">Nursing & Midewifery	</option>
-                <option value="6">Public Health	</option>
-                <option value="7">Tourism, Hospitality & Events Management	</option>
-                <option value="8">Law</option>
-                <option value="9">Biomedical Informatics	</option>
-                <option value="10">Engineering	</option>
-                <option value="11">Business & Economics	</option>
-                <option value="12">Dentistry	</option>
-                <option value="13">Education</option>
+                <option></option>
+                <option >Agriculture & Natural Resources</option>
+                <option >Arts & Social Sciences</option>
+                <option >Information Sciences	</option>
+                <option >Medicine</option>
+                <option >Nursing & Midewifery	</option>
+                <option >Public Health	</option>
+                <option >Tourism, Hospitality & Events Management	</option>
+                <option >Law</option>
+                <option >Biomedical Informatics	</option>
+                <option >Engineering	</option>
+                <option >Business & Economics	</option>
+                <option >Dentistry	</option>
+                <option >Education</option>
               </select>
             </div>
             <div className="mb-6">
@@ -75,8 +125,8 @@ export default function Home() {
             <div className="flex items-center justify-between">
               <button
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  type="button">
-                Submit
+                  type="submit">
+                Submit Feedback
               </button>
             </div>
           </form>
