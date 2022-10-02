@@ -15,7 +15,6 @@ export async function getServerSideProps() {
 
 }
 const Compliments = ({Compliments}) => {
-    console.log(Compliments)
     return (
         <>
             <Head>
