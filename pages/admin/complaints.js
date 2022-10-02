@@ -1,7 +1,7 @@
-import {Navbar} from "../../components/Navbar";
 import Head from "next/head";
+import {Navbar} from "../../components/Navbar";
 
-const Index = () => {
+const Complaints = () => {
     return (
         <>
             <Head>
@@ -12,7 +12,7 @@ const Index = () => {
             <Navbar/>
             <header className="bg-white shadow">
                 <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-                    <h1 className="text-3xl font-bold tracking-tight text-gray-900">Administration Dashboard  </h1>
+                    <h1 className="text-3xl font-bold tracking-tight text-gray-900">Complaints  </h1>
                 </div>
             </header>
             <main>
@@ -27,4 +27,4 @@ const Index = () => {
     )
 }
 
-export default Index;
+export default Complaints;

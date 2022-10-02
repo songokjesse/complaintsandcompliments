@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export const Navbar = () => {
     return (
         <>
@@ -25,13 +27,19 @@ export const Navbar = () => {
                                 <div className="flex space-x-4">
                                     <a href="#"
                                        className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                                       aria-current="page">Dashboard</a>
+                                       aria-current="page">
+                                        <Link href="/admin">Dashboard</Link>
+                                    </a>
 
                                     <a href="#"
-                                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Complaints</a>
+                                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                        <Link href="/admin/complaints">Complaints </Link>
+                                        </a>
 
                                     <a href="#"
-                                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Compliments</a>
+                                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                        <Link href="/admin/compliments">Compliments </Link>
+                                        </a>
 
                                     {/*<a href="#"*/}
                                     {/*   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Calendar</a>*/}
@@ -67,13 +75,17 @@ export const Navbar = () => {
                            aria-current="page">Dashboard</a>
 
                         <a href="#"
-                           className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Complaints</a>
+                           className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                            <Link href="/admin/complaints">Complaints </Link>
+                        </a>
 
                         <a href="#"
-                           className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Compliments</a>
+                           className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                            <Link href="/admin/compliments">Compliments </Link>
+                        </a>
 
-                        <a href="#"
-                           className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
+                        {/*<a href="#"*/}
+                        {/*   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>*/}
                     </div>
                 </div>
             </nav>
