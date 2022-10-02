@@ -1,7 +1,20 @@
 import Head from "next/head";
 import {Navbar} from "../../components/Navbar";
+import supabase from "../../lib/supabase";
+export async function getServerSideProps() {
+    const { data} = await supabase.from("feedback")
+        .select("id,school, message, created_at")
+        .eq('category', 'Complaints')
+        .order('created_at', { ascending: false });
+    return {
+        props: {
+            Complaints: data,
+        },
+    };
 
-const Complaints = () => {
+}
+const Complaints = ({Complaints}) => {
+    console.log(Complaints)
     return (
         <>
             <Head>
@@ -19,6 +32,27 @@ const Complaints = () => {
                 <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
                     <div className="px-4 py-6 sm:px-0">
                         <div className="h-96 rounded-lg border-4 border-dashed border-gray-200">
+                            <table className="table-auto min-w-full">
+                                <thead className="border-b">
+                                <tr>
+                                    <th className="bg-green-800 border text-white text-left px-8 py-4">#</th>
+                                    <th className="bg-green-800 border text-white text-left px-8 py-4">School</th>
+                                    <th className="bg-green-800 border text-white text-left px-8 py-4">Feedback</th>
+                                    <th className="bg-green-800 border text-white text-left px-8 py-4">Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {Complaints.map( complaints => (
+                                    <tr key={complaints.id}>
+                                        <td className="border px-8 py-2">{complaints.id}</td>
+                                        <td className="border px-8 py-2">{complaints.school}</td>
+                                        <td className="border px-8 py-2">{complaints.message}</td>
+                                        <td className="border px-8 py-2">{complaints.created_at}</td>
+                                    </tr>
+                                ))}
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

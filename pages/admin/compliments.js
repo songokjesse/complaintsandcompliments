@@ -1,7 +1,21 @@
 import Head from "next/head";
 import {Navbar} from "../../components/Navbar";
+import supabase from "../../lib/supabase";
 
-const Compliments = () => {
+export async function getServerSideProps() {
+    const { data} = await supabase.from("feedback")
+        .select("id,school, message, created_at")
+        .eq('category', 'Compliment')
+        .order('created_at', { ascending: false });
+    return {
+        props: {
+            Compliments: data,
+        },
+    };
+
+}
+const Compliments = ({Compliments}) => {
+    console.log(Compliments)
     return (
         <>
             <Head>
@@ -18,7 +32,28 @@ const Compliments = () => {
             <main>
                 <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
                     <div className="px-4 py-6 sm:px-0">
-                        <div className="h-96 rounded-lg border-4 border-dashed border-gray-200">
+                        <div className="h-96 rounded-lg border-2  border-gray-100">
+                            <table className="table-auto min-w-full">
+                                <thead className="border-b">
+                                <tr>
+                                    <th className="bg-green-800 border text-white text-left px-8 py-4">#</th>
+                                    <th className="bg-green-800 border text-white text-left px-8 py-4">School</th>
+                                    <th className="bg-green-800 border text-white text-left px-8 py-4">Feedback</th>
+                                    <th className="bg-green-800 border text-white text-left px-8 py-4">Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {Compliments.map( compliment => (
+                                    <tr key={compliment.id}>
+                                        <td className="border px-8 py-2">{compliment.id}</td>
+                                        <td className="border px-8 py-2">{compliment.school}</td>
+                                        <td className="border px-8 py-2">{compliment.message}</td>
+                                        <td className="border px-8 py-2">{compliment.created_at}</td>
+                                    </tr>
+                                    ))}
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
