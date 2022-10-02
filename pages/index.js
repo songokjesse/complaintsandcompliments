@@ -40,7 +40,7 @@ export default function Home() {
     // Get the response data from server as JSON.
     // If server returns the name submitted, that means the form works.
     const result = await response.json()
-    alert(`Feedback Successfully submitted: ${result.data}`)
+    alert(`Feedback Successfully submitted: ${data.category}`)
   }
   return (
     <div className={styles.container}>
